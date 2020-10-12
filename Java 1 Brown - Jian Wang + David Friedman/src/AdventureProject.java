@@ -5,9 +5,10 @@ public class AdventureProject {
 	private Scanner input = new Scanner(System.in);
 	public void introduction() {
 		System.out.println("You are a pokemon trainer in Kanto, today you went to Dr. Oak's lab to choose your first pokemon!");
+		System.out.println("With that pokemon, and the power of friendship, you aspire to defeat the local Champion for GLORY!");
 		System.out.println("What is your name, young man?");
 		String answer = input.next();
-		System.out.println("Ah," + answer + " pick your first pokemon today! We have");
+		System.out.println("Ah," + answer + ", pick your first pokemon today! We have");
 		firstChoice();
 	}
 	//first choice
@@ -30,25 +31,33 @@ public class AdventureProject {
 		}
 	}
 	
-	//fireStorylineStarts here
+	//fireStoryline, secret death trap? (Originally ended story, but I wanted to connect everything so that no matter what you do
+	//you go back to ChampRoute()
+	//it's like fate is persuading you to try and beat the champion
 	public void fireStoryline() {
 		
-		System.out.println("A challenger has invited you to a friendly duel, do you want to:");
-		System.out.println("a: accept the challenge?");
-		System.out.println("b: decline the challenge?");
+		System.out.println("Your Charmander was weak naturally, the fire on its tail that signified its life burnt out 5 weeks later");
+		System.out.println("You tried sueing the Dr.Oak but political figures escorted him out of the prison");
+		System.out.println("Heartbroken, you went to the fields in the attempt to capture a wild pokemon.");
+		wildPokemon();
+	}
+	//looping it back to the main story lines, enough side events (too much for me to organize if I keep on having more choices)
+	public void wildPokemon() {
+		
+		System.out.println("You found a wild Squirtle by a pond, and you remembered choosing that Charmander over Squirtle");
+		System.out.println("This time, you are DEFINITLY choosing Squirtle");
+		System.out.println("a: Capture Squirtle");
+		System.out.println("b: Try to find another pokemon");
 		String answer = input.next();
 		
 		if (answer.equals("a")) {
 			ChampionRoute();
 		}
 		else if (answer.equals("b")) {
+			System.out.println("You found a cat like pokemon but you don't think it's strong enough for fighting purposes. It was cute.");
 			NormalRoute();
 		}
-		else {
-			inputError();
-		}
 	}
-	
 	//waterStorylineStarts here
 	public void waterStoryline() {
 		
@@ -58,6 +67,7 @@ public class AdventureProject {
 		String answer = input.next();
 		
 		if (answer.equals("a")) {
+			System.out.println("It was an easy battle, you pokemon crushed that trainer's dream!");
 			ChampionRoute();
 		}
 		else if (answer.equals("b")) {
@@ -67,7 +77,7 @@ public class AdventureProject {
 			inputError();
 		}
 	}
-	//alternate route
+	//alternate route, can loop back to the Champion Route, but could go to alternate ending one. 
 	public void NormalRoute() {
 		
 		System.out.println("You brought your pokemon home but settled for a peaceful life, away from battles and fame.");
@@ -87,7 +97,7 @@ public class AdventureProject {
 			inputError();
 		}
 	}
-	//Champroute here
+	//Champion route here (gets looped back from the non-fighting route as well)
 	public void ChampionRoute() {
 		
 		System.out.println("As a successful trainer you will need to take constant care and help your pokemon, do you want to");
@@ -106,10 +116,10 @@ public class AdventureProject {
 		}
 	}
 	
-	//Champ continuing for now
+	//Champion routine continuing for now
 	public void C_RouteTwo() {
 		
-		System.out.println("Congratulations! You defeated your first opponent! Your pokemon is changing! Do you want to give");
+		System.out.println("Congratulations! Through you constant care, your pokemon is changing! Do you want to give");
 		System.out.println("a fossil containing the ancestry DNA to help?");
 		System.out.println("a: Help your pokemon with the fossil");
 		System.out.println("b: Do nothing and stop your pokemon from evolving");
@@ -126,7 +136,7 @@ public class AdventureProject {
 		}
 	}
 	
-	//Champ3
+	//Champion routine continues, Is it ok if I just have an universal fail dialogue like my inputError()?
 	public void C_RouteThree() {
 		
 		System.out.println("Your pokemon evolved, it turns out it was actually MEW, a powerful pokemon that can mimic all!");
@@ -147,7 +157,7 @@ public class AdventureProject {
 			inputError();
 		}
 	}
-	//Champ4, next is ending
+	//Champ4, next is ending. Can choose and go for alternate ending two
 	public void C_RouteFour() {
 		
 		System.out.println("Congratulations! Your Mew was super lucky and evaded most of the enemy strikes!");
@@ -166,11 +176,15 @@ public class AdventureProject {
 			inputError();
 		}
 	}
+	//The aforementioned alternate ending two
 	public void FourRoute() {
 		
 		System.out.println("You settled for a easy position under the champion and befriended the champion");
 		System.out.println("The champion trained your future children everyday in hopes of replacing him");
 		}
+	//The "expected" ending I guess. Really the usual story line is beating Gyms, beating the Four novas (top 4), and then the
+	//champion, there wasn't much other outcomes for this story, as most people generally wants to achieve greatness with their
+	//pokemons.
 	public void C_RouteFinal() {
 		
 		System.out.println("You have come a long way, and both Mew and you are not going to give it up.");
@@ -182,12 +196,12 @@ public class AdventureProject {
 		System.out.println("Congrats, you have created a DYNASTY!!");
 		
 	}
-	//Fail route here
+	//Fail route here, trying to make it universal
 	public void FailRoute() {
 		System.out.println("Oh no! Your pokemon  lost faith in you and ran away!");
 		System.out.println("You went back to studying and became a professor instead, doomed to never own another pokemon.");
 	}
-	//mistakes have been made
+	//mistakes have been made by the user
 	public void inputError(){
 		System.out.println("Please enter the available choices");
 	}
