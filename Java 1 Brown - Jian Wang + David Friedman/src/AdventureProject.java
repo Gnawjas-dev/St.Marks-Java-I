@@ -11,6 +11,7 @@ public class AdventureProject {
 		System.out.println("Ah," + answer + ", pick your first pokemon today! We have");
 		firstChoice();
 	}
+	
 	//first choice
 	public void firstChoice() {
 		System.out.println("a: Charmander");
