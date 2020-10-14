@@ -31,7 +31,6 @@ public class AdventureProject {
 			inputError();
 		}
 	}
-	
 	//fireStoryline, secret death trap? (Originally ended story, but I wanted to connect everything so that no matter what you do
 	//you go back to ChampRoute()
 	//it's like fate is persuading you to try and beat the champion
@@ -57,6 +56,9 @@ public class AdventureProject {
 		else if (answer.equals("b")) {
 			System.out.println("You found a cat like pokemon but you don't think it's strong enough for fighting purposes. It was cute.");
 			NormalRoute();
+		}
+		else {
+			inputError();
 		}
 	}
 	//waterStorylineStarts here
@@ -107,7 +109,7 @@ public class AdventureProject {
 		String answer = input.next();
 		
 		if (answer.equals("a")) {
-			C_RouteTwo();
+			GymBattle();
 		}
 		else if (answer.equals("b")) {
 			FailRoute();
@@ -115,12 +117,11 @@ public class AdventureProject {
 		else {
 			inputError();
 		}
-	}
-	
+	}	
 	//Champion routine continuing for now
 	public void C_RouteTwo() {
 		
-		System.out.println("Congratulations! Through you constant care, your pokemon is changing! Do you want to give");
+		System.out.println("Congratulations! Through you constant care and hard battles, your pokemon is changing! Do you want to give");
 		System.out.println("a fossil containing the ancestry DNA to help?");
 		System.out.println("a: Help your pokemon with the fossil");
 		System.out.println("b: Do nothing and stop your pokemon from evolving");
@@ -136,11 +137,10 @@ public class AdventureProject {
 			inputError();
 		}
 	}
-	
 	//Champion routine continues, Is it ok if I just have an universal fail dialogue like my inputError()?
 	public void C_RouteThree() {
 		
-		System.out.println("Your pokemon evolved, it turns out it was actually MEW, a powerful pokemon that can mimic all!");
+		System.out.println("Your pokemon evolved, it turns out it was actually MEW, a powerful pokemon that can mimic other pokemons and use their abilities!");
 		System.out.println("After researching on Mew and training with it, you challenged the pokemon league in hopes to win");
 		System.out.println("Three months has passed and you are fighting an nigh-impossible uphill battle with the top 4");
 		System.out.println("Do you want to:");
@@ -206,7 +206,45 @@ public class AdventureProject {
 	public void inputError(){
 		System.out.println("Please enter the available choices");
 	}
-	
+	//newly added: GymBattles
+	public void GymBattle() {
+		System.out.println("Before you started challenging the Champion, you need to train your pokemon, which you did, now you need to challenge and beat all 8 local gym leaders");
+		System.out.println("Do you want to:");
+		System.out.println("a: Fight all the gym leaders, getting stronger on the way.");
+		System.out.println("b: Don't fight, and try to have a private battle with the champion");
+		String answer = input.next();
+		
+		if (answer.equals("a")) {
+			Marriage();
+		}
+		else if (answer.equals("b")) {
+			System.out.println("The champion doesn't accept unauthorized challengers, he released his main pokemon and destroyed you.");
+			FailRoute();
+		}
+		else {
+			inputError();
+		}
+	}
+	//newly added: Marriage, potential ending
+	public void Marriage() {
+		System.out.println("Throughout your travels, you meet a match that you see fitting for the rest of your live, your partner asks you to settle down.");
+		System.out.println("Will you:");
+		System.out.println("a: Settle down and live a peaceful live, beating the gym leaders are good enough");
+		System.out.println("b: Convince her to either follow you or wait for you");
+		String answer = input.next();
+		
+		if (answer.equals("a")) {
+			System.out.println("You settled down with your significant other, and worked hard to raise your children");
+			System.out.println("Your children aspired to become a champion just like you, and through countless days of hard work they eventually achieved success.");
+			System.out.println("You spent your elder days pondering what would have happened had you stayed to fight for more glory.");
+		}
+		else if (answer.equals("b")) {
+			C_RouteTwo();
+		}
+		else {
+			inputError();
+		}
+	}
 	// main method to get the game started.
 	public static void main(String[] args) {
 		
