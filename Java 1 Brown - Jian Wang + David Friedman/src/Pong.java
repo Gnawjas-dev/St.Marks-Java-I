@@ -1,7 +1,8 @@
 // filler code for pong provided by Mr. David
 //Filled by Jason Wang and edited
 //Function activates "h", deactivate "g"
-//Function makes Paddles and Ball move at 2x speed, and the ball is now 2x bigger and Black instead of Blue
+//Function makes Paddles and Ball move at 2x speed, and the ball is now 2x bigger and Black instead of Blue, Paddles are also enlarged
+//Single player moves both paddles at the same time, and the player is trying to juggle the ball instead between the two paddles
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -243,11 +244,13 @@ public class Pong extends JPanel implements KeyListener {
 		if (e.getKeyChar() == '1') {
 //			// fill this in
 			solo = true; 
+			score = score2 = 0;
 			}
 		
 		// turn 2-player mode on
 		if (e.getKeyChar() == '2')
 			solo = false;
+			score = score2 = 0;
 			// fill this in
 		if (e.getKeyChar() == 'h') {
 //			// fill this in
