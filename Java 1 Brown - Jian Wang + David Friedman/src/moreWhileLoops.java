@@ -10,7 +10,7 @@ public class moreWhileLoops {
 		int x = 5;
 		System.out.println("I am thinking of a number between 1 to 10, guess the number to proceed");
 		int answer = input.nextInt();
-		while (answer != 5) {
+		while (answer != x) {
 			System.out.println("wrong, guess again");
 			answer = input.nextInt();
 		}
@@ -78,6 +78,19 @@ public class moreWhileLoops {
 		}
 		System.out.println("It is not a prime number, it is divisible by " + count);
 	}
+	
+	public void lcm() {
+		System.out.println("");
+		int n1 = input.nextInt();
+		int n2 = input.nextInt();
+		
+		int count = Math.max(n1, n2);
+		
+		while(count%n1!=0 || count%n2!=0) {
+			count+=1;
+			}
+		System.out.println("Lowest Common Multiple is " + count);
+		}
 	//running 6 methods
 	public static void main(String[]args) {
 		moreWhileLoops runner = new moreWhileLoops();
@@ -87,5 +100,6 @@ public class moreWhileLoops {
 		runner.factorial();
 		runner.gameRepeat();
 		runner.prime();
+		runner.lcm();
 	}
 }
