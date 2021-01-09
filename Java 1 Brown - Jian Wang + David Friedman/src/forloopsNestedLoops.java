@@ -79,8 +79,21 @@ public class forloopsNestedLoops {
 		}   
 	}
 	
+	public void patternbox() {
+		System.out.println("Enter an integer for the parameter");
+		int x = in.nextInt();
+		for (int i=1; i>=x; x++){
+		    for (int j=1; j<=x; j++)
+		    {
+		        System.out.print(j + " ");  
+		    }
+		    System.out.println();
+		    }
+	}
+	
 	public static void main(String [] args) {
 		forloopsNestedLoops run = new forloopsNestedLoops();
+		run.patternbox();
 		run.easy1();
 		run.easy2();
 		run.easy3();
