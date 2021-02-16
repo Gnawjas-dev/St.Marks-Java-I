@@ -67,7 +67,7 @@ public class MoreWith2dArrays {
 		MoreWith2dArrays run = new MoreWith2dArrays();
 		int n=5;
 		double[][]num = {{5.3,2.2,7.3},{2.3,2.4,3.3},{4.3,6.7,1.4},{7.9}};
-		int[][]num2 = {{3,2,3},{3,4,3},{4,6,1},{7}};
+		int[][]num2 = {{2,2,3},{3,4,3},{4,6,1},{7}};
 		run.nxn(n);
 		run.maxdouble2d(num);
 		run.add2d(num2);
