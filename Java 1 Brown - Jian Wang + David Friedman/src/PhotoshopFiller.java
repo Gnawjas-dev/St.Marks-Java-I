@@ -143,6 +143,7 @@ public class PhotoshopFiller extends Component {
         		
         		double min = Integer.MAX_VALUE;
         		int loc = 0;
+        		
         		for (int color=0;color<colorList.length;color++) {
         			double distance=distance(pixels[i][j],colorList[color]);
         			if(distance<min) {
