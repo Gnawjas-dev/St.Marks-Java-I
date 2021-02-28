@@ -37,13 +37,14 @@ public class PhotoshopFiller extends Component {
         
         // your code here
         for(int i=0; i<pixels.length;i++) {
-        	for(int j=0; j<pixels[i].length;j++) {
+        	for(int j=0; j<pixels[i].length;j++) {//running through each pixel in the array
         		
         		Color c = pixels[i][j];
         		int r = c.getRed() + amount;
         		int g = c.getGreen() + amount;
-        		int b = c.getBlue() + amount;
+        		int b = c.getBlue() + amount;//adding a certain amount to the rgb values to the pixel
         		
+        		//checking the range/limits to not break the rgb color system (capping)
         		if(r>255)
         			r=255;
         		if(r<0)
@@ -58,7 +59,7 @@ public class PhotoshopFiller extends Component {
         			b=0;
         		
         		
-        		pixels[i][j] = new Color(r,g,b);
+        		pixels[i][j] = new Color(r,g,b);//setting the pixel to the brightened values
         		
         	}
         }
@@ -70,11 +71,11 @@ public class PhotoshopFiller extends Component {
         
         // your code here
         
-        if(horizontally) {
-	        for(int row = 0; row<pixels.length;row++) {
+        if(horizontally) {//check for horizontal
+	        for(int row = 0; row<pixels.length;row++) {//runs through half horizontally and fully vertically
 	        	for(int column = 0; column<pixels[row].length/2;column++) {
 	        		Color temp1 =pixels[row][column];
-	        		Color temp2 =pixels[row][pixels[row].length-1-column];
+	        		Color temp2 =pixels[row][pixels[row].length-1-column];//switching front and back to "flip"
 	        		pixels[row][column]=temp2;
 	        		pixels[row][pixels[row].length-1-column] = temp1;
 	        		
@@ -82,9 +83,10 @@ public class PhotoshopFiller extends Component {
 	        }
         }
         
-        else {
+        else {//check for vertical
         	for(int row = 0; row<pixels.length/2;row++) {
-	        	for(int column = 0; column<pixels[row].length;column++) {
+	        	for(int column = 0; column<pixels[row].length;column++) {//runs through half vertically and fully horizontally
+	        		//switch front and back
 	        		Color temp1 =pixels[row][column];
 	        		Color temp2 =pixels[pixels.length-1-row][column];
 	        		pixels[row][column]=temp2;
@@ -104,12 +106,14 @@ public class PhotoshopFiller extends Component {
         
         // your code here
         for (int row=0;row<pixels.length;row++) {
-        	for (int column=0;column<pixels[row].length;column++) {
+        	for (int column=0;column<pixels[row].length;column++) {//running through each pixel
         		Color c = pixels[row][column];
+        		//negating w/ calculations
         		int r = 255 - c.getRed();
         		int g = 255 - c.getGreen();
         		int b = 255 - c.getBlue();
         		
+        		//check limits/range
         		if(r<0)
         			r=0;
         		
@@ -120,7 +124,7 @@ public class PhotoshopFiller extends Component {
         			b=0;
         		
         		
-        		pixels[row][column] = new Color(r,g,b);
+        		pixels[row][column] = new Color(r,g,b);//resetting the pixel into the calculated (negated) color
         	}
         }
     }
@@ -138,21 +142,21 @@ public class PhotoshopFiller extends Component {
         
         // your code here
         for (int i=0; i<pixels.length; i++) {
-        	for (int j=0; j<pixels[i].length; j++) {
+        	for (int j=0; j<pixels[i].length; j++) {//runs through all pixels
         		
         		
-        		double min = Integer.MAX_VALUE;
-        		int loc = 0;
+        		double min = Integer.MAX_VALUE; //maximum for comparison
+        		int loc = 0; //remembers the color that is the closest
         		
         		for (int color=0;color<colorList.length;color++) {
         			double distance=distance(pixels[i][j],colorList[color]);
-        			if(distance<min) {
+        			if(distance<min) {//if statement to find the closest color to the pixel
         				min=distance;
         				loc = color;
         			}
         			
         		}
-        		pixels[i][j]=colorList[loc];
+        		pixels[i][j]=colorList[loc];//turning the pixel color into the "closest color to the pixel" after comparison
         	}
         }
         
@@ -162,9 +166,12 @@ public class PhotoshopFiller extends Component {
     // between two colors.
     // use the 3d distance formula to calculate
     public double distance(Color c1, Color c2) {
+    	//find all rgb values for the 2 inputs (c1's r g b and c2's r g b
     	int r1 = c1.getRed(); int r2 = c2.getRed(); int b1 = c1.getBlue(); int b2 = c2.getBlue(); int g1 = c1.getGreen(); int g2 = c2.getGreen();
+    	//distance formula applied for 3 pairs of values
     	double distance = Math.sqrt(Math.pow(r1-r2,2)+Math.pow(b1-b2,2)+Math.pow(g1-g2,2));
-    		return distance;	// fix this
+    	//turn back to check if it's close enough to the said color
+    		return distance;	// fix this //fixed
     }
     
     // this blurs the image
@@ -175,6 +182,33 @@ public class PhotoshopFiller extends Component {
 		outputName = "blurred_" + outputName;
 		
 		// your code here
+		Color[][]temp=new Color [pixels.length][pixels[0].length];
+		for(int row = 5; row<pixels.length-5;row++) {			//row of image
+			for(int col = 5; col<pixels[row].length-5;col++) {  //column of image
+				//make the box
+				//initializing the rgb val for calc
+				int red = 0;
+				int blue = 0;
+				int green = 0;
+				for (int trow = row-5; trow<=row+5; trow++) {	//row of 8surrounding grid
+					for (int tcol = col-5; tcol<=col+5; tcol++) {//column of 8surrounding grid
+						//calculating the rgb vals: summing
+						red+=pixels[trow][tcol].getRed();
+						blue+=pixels[trow][tcol].getBlue();
+						green+=pixels[trow][tcol].getGreen();
+					}
+				}
+				//averaging the values with the rest of its types in the 11x11 grid
+				red = red/121; blue = blue/121; green = green/121; //trying 11x11 grid
+				
+					temp[row][col] = new Color (red, green, blue);//new pixel 2d array to not alter with subsequent forloop runs
+					}
+				}
+		for(int row = 5; row<pixels.length-5;row++) {//copies it back to original file to turn in
+			for(int col = 5; col<pixels[row].length-5;col++) {
+				pixels[row][col]=temp[row][col];
+			}
+		}
 	}
     
     // this highlights the edges in the image, turning everything else black. 
@@ -185,8 +219,69 @@ public class PhotoshopFiller extends Component {
         outputName = "edged_" + outputName;
 
         // your code here
+        Color[][]tempColors=new Color [pixels.length][pixels[0].length]; //create a separate blank image to transcribe to
+        
+        for(int row = 1; row<pixels.length-1;row++) {			//row and column for the actual image
+			for(int col = 1; col<pixels[row].length-1;col++) {
+				
+				//make the box
+				//calculate the rgb val. for the pixels
+				int red = 0;
+				int blue = 0;
+				int green = 0;
+				
+				for (int trow = row-1; trow<=row+1; trow++) {	//row+column for the 8 surrounding grid
+					for (int tcol = col-1; tcol<=col+1; tcol++) {
+						
+						if(trow==row&&tcol==col)	//skips the middle pixels
+							continue;
+						red+=pixels[trow][tcol].getRed();	//summing the rgb vals
+						blue+=pixels[trow][tcol].getBlue();
+						green+=pixels[trow][tcol].getGreen();
+						
+					}
+				}
+				//calculations + limitations (so the rgb doesn't break)
+				int r = pixels[row][col].getRed()*8-red; 
+				if(r>255)
+					r=255;
+				if(r<0)
+					r=0;
+				int b = pixels[row][col].getBlue()*8-blue; 
+				if(b>255)
+					b=255;
+				if(b<0)
+					b=0;
+				int g = pixels[row][col].getGreen()*8-green;
+				if(g>255)
+					g=255;
+				if(g<0)
+					g=0;
+				//copy to new pixel 2d array, avoids altering the pixels of the original pixel 2d array
+				tempColors[row][col]=new Color (r,g,b);
+				
+			}
+		}
+        
+        for(int i = 1; i<pixels.length-1;i++) {
+			for(int j = 1; j<pixels[i].length-1;j++) {
+				//copying it back to the original after everything is done
+				pixels[i][j]=tempColors[i][j];
+				
+			}
+		}
     }
-    
+    //this converts all colors into only black/white/grey gradients
+    //average the rgb value (sum) and use it for all three rgb values
+    public void greyscale() {
+    	outputName = "greyscale_" + outputName;
+    	for(int i=0;i<pixels.length;i++) {//nested loop to check each pixel
+    		for(int j=0;j<pixels[i].length;j++) {
+    			int avg = (pixels[i][j].getRed()+pixels[i][j].getBlue()+pixels[i][j].getGreen())/3;//greyscale by averaging rgb val and using it for all 3 inputs
+    			pixels[i][j]=new Color (avg, avg, avg);
+    		}
+    	}
+    }
     
     // *************** DON'T MESS WITH THE BELOW CODE **************** //
     
@@ -216,7 +311,7 @@ public class PhotoshopFiller extends Component {
 			
 			// runs the manipulations determined by the user
 			System.out.println("Enter the manipulations you would like to run on the image.\nYour "
-					+ "choices are: brighten, flip, negate, blur, edge, or simplify.\nEnter each "
+					+ "choices are: brighten, flip, negate, blur, edge, greyscale, or simplify.\nEnter each "
 					+ "manipulation you'd like to run, then type in 'done'.");
 			Scanner in = new Scanner(System.in);
 			String action = in.next().toLowerCase();
