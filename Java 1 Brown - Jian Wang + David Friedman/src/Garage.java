@@ -1,5 +1,3 @@
-import arrays.Human;
-
 public class Garage {
 	
 	private Car[] cars;
