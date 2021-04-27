@@ -1,94 +1,71 @@
-//Jason Wang
+package arrays;
+
+
+import java.util.Scanner;
+
 public class Human {
-private int age;
-private char gender;
-private boolean vote;
-private boolean tdshots;
-private boolean discount;
-//sets age and copies input to age
-	public void setAge(int x) {
+	private int age;
+	private String name;
+	private String race;
+	private boolean vote = false;
+	
+	public Human(int a, String n, String r) {
 		
-		age = x;
-		
-	}
-//setting gender
-	public void setGender(char y) {
-		
-		gender = y;
+		this.age=a; this.name = n; this.race = r;
 		
 	}
-//voteing yes/no
-	public void vote() {
-		
-		if (age >= 18) {
-			vote = true;
-		}
-		else {
-			vote = false;
-		}
-		
-		System.out.println(vote);
+	
+	public int getAge() {
+		return age;
 	}
-//TD shot
-	public void tetanusWhen() {
-		
-		if (age == 0 || age%4==0) {
-			tdshots = true;
-		}
-		else {
-			tdshots = false;
-		}
-		System.out.println(tdshots);
-	}	
-//printtoddler
-	public void printToddler() {
-		
-		
-		if (age <= 4) {
-			if (gender == 'g') {
-				System.out.println("toddler girl");
-				}
-			if (gender == 'b') {
-				System.out.println("toddler boy");
-				}
-		else {
-			System.out.println("not a toddler");
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getRace() {
+		return race;
+	}
+	
+	public String vote() {
+		if(vote)
+			return " can vote";
+		else
+			return " cannot vote";
+	}
+	
+	public void getOlder() {
+		age++;
+	}
+	
+	public void changeName(String newName) {
+		name = newName;
+	}
+	
+	public void changeRace(String newRace) {
+		race = newRace;
+	}
+
+	public String toString() {
+		return "name: " + name + " age: " + age + " race: " + race;
+	}
+	
+	public void checkvote(int year) {
+		if (year%4==0) {
+			if(age<18) {
+				vote=false;
 			}
-		}
-	}
-//discounts
-	public void discount() {
-		
-		if (age > 65 || age < 12) {
-			discount = true;
+			else
+				vote=true;
 		}
 		else {
-			discount = false;
-		}
-		System.out.println(discount);
-		
-	}
-//teen
-	public void teenager() {
-		
-		if (age >12 && age < 19) {
-			System.out.println("Teenager");
-			
-		}
-		else {
-			System.out.println("not teenager");
+			vote=false;
 		}
 	}
-
-
-
-public static void main(String[] args) {
-	Human tester = new Human();
-	tester.setAge (17);
-	tester.setGender ('g');
-	tester.vote();
-	tester.tetanusWhen();
-	tester.printToddler();
-	tester.discount();
-	tester.teenager();}
+	
+	
+	public static void main(String[]args) {
+		//create a human with name and age
+		
+	}
 }

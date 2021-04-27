@@ -3,7 +3,7 @@
 
 
 
-//Medium: Write a method that takes a 2d array of doubles as parameter. Your method should reverse each row in the array. 
+
 
 //Hard: Write a method that takes a 2d array of doubles as a parameter. Your method should create a new 1d array 
 //containing the sum of each column. 
@@ -97,6 +97,16 @@ public class EvenMore2dArrays {
 			}
 		}
 		display(x);
+	}
+	
+	//Medium: Write a method that takes a 2d array of doubles as parameter. Your method should reverse each row in the array. 
+	
+	public void reverse(double [][] original) {
+		for(int i=0;i<original.length;i++) {
+			for(int j=0;j<original[i].length/2;j++) {
+				double temp = original[i][original[i].length-1-j];
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
