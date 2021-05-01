@@ -8,7 +8,7 @@ public abstract class PokeTeam {
 	public static final int SCORELIMIT = 1050;
 	
 	public PokeTeam(String name) {
-		this.team = createTeam(); this.name = name;
+		this.team = createTeam(); this.name = name; 
 	}
 	
 	public abstract ArrayList<Pokemon> createTeam();
